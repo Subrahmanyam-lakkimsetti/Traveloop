@@ -18,8 +18,23 @@ app.set('query parser', (str) => qs.parse(str));
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+const allowedOrigins = [
+  'https://traveloop-tan.vercel.app',
+  'http://localhost:5173',
+];
 
-app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('CORS error for: ' + origin));
+      }
+    },
+    credentials: true,
+  })
+);
 
 const limiter = rateLimit({
   max: 5,
