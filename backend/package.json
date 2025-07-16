@@ -8,7 +8,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "debug": "ndb nodemon server"
+    "debug": "ndb nodemon server",
+    "start": "node server.js"
   },
   "dependencies": {
     "@sendgrid/mail": "^8.1.5",
