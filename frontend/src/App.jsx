@@ -9,7 +9,6 @@ import SingleTour from '../pages/SingleTour';
 import AuthPage from '../pages/AuthPage';
 import AllTours from '../pages/AllTours';
 import UserProfile from '../pages/UserProfile';
-import verifyPayment from '../components/SingleTour.jsx/verifyPayment';
 import VerifyPayment from '../components/SingleTour.jsx/verifyPayment';
 import UserBookings from '../pages/UserBookings';
 
@@ -28,7 +27,6 @@ function App() {
 
         const respObj = await resp.json();
 
-      
         if (respObj.status === 'sucess') {
           setUser({
             isLoggedin: true,
@@ -38,11 +36,9 @@ function App() {
             photo: respObj.data.data.photo,
           });
         } else {
-          
           setUser({ isLoggedin: false, name: 'guest' });
         }
       } catch (error) {
-        
         setUser({ isLoggedin: false, name: 'guest' });
       }
     };
@@ -51,7 +47,6 @@ function App() {
   }, []);
 
   const afterLoginorSignUp = (respObj) => {
-    
     const userData = {
       isLoggedin: true,
       name: respObj.data.user.name,
